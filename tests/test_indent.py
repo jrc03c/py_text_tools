@@ -1,50 +1,44 @@
-# const indent = require("./indent.js")
+from py_text_tools import indent
+from unittest import TestCase
 
-# test("tests that indentation works as expected", () => {
-#   const a = "Hello, world!"
-#   const bTrue = "    Hello, world!"
-#   const bPred = indent(a, "    ")
-#   expect(bPred).toBe(bTrue)
 
-#   const c = "Hello, world!"
-#   const dTrue = "\t\t\t\tHello, world!"
-#   const dPred = indent(c, "\t\t\t\t")
-#   expect(dPred).toBe(dTrue)
+class IndentTestCase(TestCase):
+    def test(self):
+        a = "Hello, world!"
+        b_true = "    Hello, world!"
+        b_pred = indent(a, "    ")
+        self.assertEqual(b_true, b_pred)
 
-#   const e = [
-#     "  Hello, world!",
-#     "\t\t  My name is Josh!",
-#     "    \t\t  What's your name?",
-#   ].join("\n")
+        c = "Hello, world!"
+        d_true = "\t\t\t\tHello, world!"
+        d_pred = indent(c, "\t\t\t\t")
+        self.assertEqual(d_true, d_pred)
 
-#   const fTrue = e
-#     .split("\n")
-#     .map(line => "!!!!!!" + line)
-#     .join("\n")
+        e = ("\n").join[
+            "  Hello, world!", "\t\t  My name is Josh!", "    \t\t  What's your name?"
+        ]
 
-#   const fPred = indent(e, "!!!!!!")
-#   expect(fPred).toBe(fTrue)
+        f_true = ("\n").join(list(map(lambda line: "!!!!!!" + line, e.split("\n"))))
+        f_pred = indent(e, "!!!!!!")
+        self.assertEqual(f_true, f_pred)
 
-#   const g = `
-#     *question: What's your name?
-#       Alice
-#       Bob
-#       Charlie
-#       Denise
-#       Something else...
-#   `
+        g = """
+            *question: What's your name?
+                Alice
+                Bob
+                Charlie
+                Denise
+                Something else...
+        """
 
-#   const hTrue = g
-#     .split("\n")
-#     .map(line => {
-#       if (line.trim().length > 0) {
-#         return "\t\t" + line
-#       } else {
-#         return line
-#       }
-#     })
-#     .join("\n")
+        h_true = ("\n").join(
+            list(
+                map(
+                    lambda line: "\t\t" + line if len(line.strip()) > 0 else line,
+                    g.split("\n"),
+                )
+            )
+        )
 
-#   const hPred = indent(g, "\t\t")
-#   expect(hPred).toBe(hTrue)
-# })
+        h_pred = indent(g, "\t\t")
+        self.assertEqual(h_true, h_pred)
