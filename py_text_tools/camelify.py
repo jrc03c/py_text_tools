@@ -9,7 +9,7 @@ def camelify(text):
     out = ""
     should_capitalize_next_character = False
 
-    for char in text.split(""):
+    for char in list(text):
         if alphanumerics.match(char):
             if len(out) == 0:
                 out += char.lower()

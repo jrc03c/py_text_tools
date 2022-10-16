@@ -12,7 +12,7 @@ def unindent(text):
     indentations = list(
         map(
             lambda line: find_index(
-                lambda char: not whitespace.match(char), line.split("")
+                lambda char: not whitespace.match(char), list(line)
             ),
             lines,
         )

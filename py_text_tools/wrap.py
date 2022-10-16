@@ -24,7 +24,7 @@ def wrap(raw, max_line_length=None):
             out.append("")
 
         first_important_character_index = find_index(
-            lambda char: not whitespace.match(char), line.split("")
+            lambda char: not whitespace.match(char), list(line)
         )
 
         indentation = line[:first_important_character_index]

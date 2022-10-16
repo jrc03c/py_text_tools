@@ -10,7 +10,7 @@ def strip(text):
 
     out = ""
 
-    for char in text.split(""):
+    for char in list(text):
         char = char.lower()
 
         if char in alpha:
