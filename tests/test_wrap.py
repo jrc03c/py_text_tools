@@ -1,72 +1,35 @@
-# const wrap = require("./wrap.js")
-# const makeKey = require("@jrc03c/make-key")
-# const { range } = require("@jrc03c/js-math-tools")
+from numpy.random import random
+from py_text_tools import wrap
+from unittest import TestCase
 
-# test("tests that line lengths are correctly constrained", () => {
-#   const text = range(0, 1000)
-#     .map(() => makeKey(8))
-#     .join(" ")
 
-#   const maxLineLengths = [40, 80, 120]
+def make_key(n):
+    alpha = "abcdefghijklmnopqrstuvwxyz1234567890"
+    out = ""
 
-#   maxLineLengths.forEach(maxLineLength => {
-#     const wrapped = wrap(text, maxLineLength)
+    while len(out) < n:
+        out += alpha[int(random() * len(out))]
 
-#     wrapped.split("\n").forEach(line => {
-#       expect(line.length).toBeLessThanOrEqual(maxLineLength)
-#     })
-#   })
-# })
+    return out
 
-# test("tests that wrapping preserves indentation", () => {
-#   const text =
-#     "\t\tLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mollis tellus eu mi condimentum, a congue ipsum luctus. Donec vel suscipit dolor, vitae faucibus massa. Curabitur rhoncus semper tortor et mattis. Nullam laoreet lobortis nibh eget viverra. Nam molestie risus vitae ante placerat convallis. Pellentesque quis tristique dui. Vivamus efficitur mi erat, nec gravida felis posuere at. Donec sapien ipsum, viverra et aliquam quis, posuere ac ligula. Aenean egestas tincidunt mauris, in hendrerit tortor malesuada id. Proin viverra sodales ex eu fermentum. Aenean nisl ipsum, tristique venenatis massa eget, tempor facilisis felis. Praesent aliquam sem vitae arcu porta commodo. Aliquam tempor sollicitudin dapibus. Nulla ullamcorper orci eu ultricies cursus."
 
-#   const wrapped1 = wrap(text, 40)
-#   const lines1 = wrapped1.split("\n")
+class WrapTestCase(TestCase):
+    def test_length_constraints(self):
+        text = (" ").join(list(map(lambda: make_key(8), list(range(0, 1000)))))
+        max_line_lengths = [40, 80, 120]
 
-#   lines1.forEach(line => {
-#     expect(line.startsWith("\t\t")).toBe(true)
-#     expect(line.length).toBeLessThanOrEqual(40)
-#   })
-# })
+        for max_line_length in max_line_lengths:
+            wrapped = wrap(text, max_line_length=max_line_length)
 
-# test("tests that errors are thrown at appropriate times", () => {
-#   const rights = [
-#     ["Hello, world!", null],
-#     ["Hello, world!", undefined],
-#   ]
+            for line in wrapped.split("\n"):
+                self.assertLessEqual(len(line), max_line_length)
 
-#   rights.forEach(pair => {
-#     expect(() => {
-#       wrap(pair[0], pair[1])
-#     }).not.toThrow()
-#   })
+    def test_indentation_preservation(self):
+        text = "\t\tLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mollis tellus eu mi condimentum, a congue ipsum luctus. Donec vel suscipit dolor, vitae faucibus massa. Curabitur rhoncus semper tortor et mattis. Nullam laoreet lobortis nibh eget viverra. Nam molestie risus vitae ante placerat convallis. Pellentesque quis tristique dui. Vivamus efficitur mi erat, nec gravida felis posuere at. Donec sapien ipsum, viverra et aliquam quis, posuere ac ligula. Aenean egestas tincidunt mauris, in hendrerit tortor malesuada id. Proin viverra sodales ex eu fermentum. Aenean nisl ipsum, tristique venenatis massa eget, tempor facilisis felis. Praesent aliquam sem vitae arcu porta commodo. Aliquam tempor sollicitudin dapibus. Nulla ullamcorper orci eu ultricies cursus."
 
-#   expect(() => {
-#     wrap("Hello, world!")
-#   }).not.toThrow()
+        wrapped = wrap(text, 40)
+        lines = wrapped.split("\n")
 
-#   const wrongs = [
-#     [234, 80],
-#     [true, 80],
-#     [false, 80],
-#     [null, 80],
-#     [undefined, 80],
-#     [{}, 80],
-#     [[], 80],
-#     [() => {}, 80],
-#     ["Hello, world!", "foobar"],
-#     ["Hello, world!", true],
-#     ["Hello, world!", false],
-#     ["Hello, world!", {}],
-#     ["Hello, world!", []],
-#     ["Hello, world!", () => {}],
-#   ]
-
-#   wrongs.forEach(pair => {
-#     expect(() => {
-#       wrap(pair[0], pair[1])
-#     }).toThrow()
-#   })
-# })
+        for line in lines:
+            self.assertEqual("\t\t", line[:2])
+            self.assertLessEqual(len(line), 40)
