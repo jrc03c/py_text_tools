@@ -32,9 +32,13 @@ class UnindentTestCase(TestCase):
         g = """
             *question: What's your name?
                 Alice
+
                 Bob
+
                 Charlie
+
                 Denise
+
                 Something else...
         """
 
@@ -42,9 +46,13 @@ class UnindentTestCase(TestCase):
             [
                 "*question: What's your name?",
                 "    Alice",
+                "",
                 "    Bob",
+                "",
                 "    Charlie",
+                "",
                 "    Denise",
+                "",
                 "    Something else...",
             ]
         )

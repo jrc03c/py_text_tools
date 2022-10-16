@@ -7,14 +7,13 @@ def unindent(text):
 
     whitespace = re.compile("\s")
     lines = text.split("\n")
-    lines = list(filter(lambda line: len(line.strip()) > 0, lines))
 
     indentations = list(
         map(
             lambda line: find_index(
                 lambda char: not whitespace.match(char), list(line)
             ),
-            lines,
+            list(filter(lambda line: len(line.strip()) > 0, lines)),
         )
     )
 

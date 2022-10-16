@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="py_text_tools",
-    version="0.0.4",
+    version="0.0.5",
     description="some text tools for python",
     url="https://github.com/jrc03c/py_text_tools",
     author="jrc03c",
