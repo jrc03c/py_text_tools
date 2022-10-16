@@ -15,7 +15,7 @@ def make_key(n):
 
 class WrapTestCase(TestCase):
     def test_length_constraints(self):
-        text = (" ").join(list(map(lambda: make_key(8), list(range(0, 1000)))))
+        text = (" ").join(list(map(lambda i: make_key(8), list(range(0, 1000)))))
         max_line_lengths = [40, 80, 120]
 
         for max_line_length in max_line_lengths:
