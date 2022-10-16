@@ -1,4 +1,4 @@
-from .helpers.find_index import find_index
+from py_text_tools.helpers.find_index import find_index
 import re
 
 

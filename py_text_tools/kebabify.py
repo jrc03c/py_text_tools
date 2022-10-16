@@ -1,4 +1,4 @@
-from .helpers.strip import strip
+from py_text_tools.helpers.strip import strip
 
 
 def kebabify(text):
