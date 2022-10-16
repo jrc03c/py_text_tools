@@ -1,6 +1,9 @@
-# const replaceAll = require("./replace-all.js")
+from py_text_tools.helpers import replace_all
+from unittest import TestCase
 
-# test("tests `replaceAll`", () => {
-#   expect(replaceAll("foobar", "o", "z")).toBe("fzzbar")
-#   expect(replaceAll("Hello, world!", "!", "?")).toBe("Hello, world?")
-# })
+
+class ReplaceAllTestCase(TestCase):
+    def test(self):
+        self.assertEqual(replace_all("foobar", "o", "z"), "fzzbar")
+        self.assertEqual(replace_all("Hello, world!", "!", "?"), "Hello, world?")
+
