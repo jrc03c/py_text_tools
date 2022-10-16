@@ -14,9 +14,9 @@ class IndentTestCase(TestCase):
         d_pred = indent(c, "\t\t\t\t")
         self.assertEqual(d_true, d_pred)
 
-        e = ("\n").join[
-            "  Hello, world!", "\t\t  My name is Josh!", "    \t\t  What's your name?"
-        ]
+        e = ("\n").join(
+            ["  Hello, world!", "\t\t  My name is Josh!", "    \t\t  What's your name?"]
+        )
 
         f_true = ("\n").join(list(map(lambda line: "!!!!!!" + line, e.split("\n"))))
         f_pred = indent(e, "!!!!!!")
