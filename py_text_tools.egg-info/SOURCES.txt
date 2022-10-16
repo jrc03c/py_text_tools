@@ -1,0 +1,13 @@
+README.md
+setup.py
+py_text_tools/__init__.py
+py_text_tools/camelify.py
+py_text_tools/indent.py
+py_text_tools/kebabify.py
+py_text_tools/snakeify.py
+py_text_tools/unindent.py
+py_text_tools/wrap.py
+py_text_tools.egg-info/PKG-INFO
+py_text_tools.egg-info/SOURCES.txt
+py_text_tools.egg-info/dependency_links.txt
+py_text_tools.egg-info/top_level.txt
