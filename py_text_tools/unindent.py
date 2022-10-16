@@ -1,15 +1,9 @@
+from .helpers.find_index import find_index
 import re
 
 
 def unindent(text):
     assert type(text) == str, "`text` must be a string!"
-
-    def find_index(fn, x):
-        for i in range(0, len(x)):
-            if fn(x[i]):
-                return i
-
-        return None
 
     whitespace = re.compile("\s")
     lines = text.split("\n")

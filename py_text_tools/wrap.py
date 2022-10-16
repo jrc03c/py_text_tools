@@ -1,55 +1,47 @@
-# function wrap(raw, maxLineLength) {
-#   if (typeof raw !== "string") {
-#     throw new Error(
-#       "The first argument to the `wrap` function must be a string!"
-#     )
-#   }
+from .helpers.find_index import find_index
+import os
+import re
 
-#   if (typeof maxLineLength === "undefined" || maxLineLength === null) {
-#     if (
-#       typeof process !== "undefined" &&
-#       typeof process.stdout !== "undefined" &&
-#       typeof process.stdout.columns === "number"
-#     ) {
-#       maxLineLength = process.stdout.columns > 80 ? 80 : process.stdout.columns
-#     } else {
-#       maxLineLength = 80
-#     }
-#   }
 
-#   if (isNaN(maxLineLength) || typeof maxLineLength !== "number") {
-#     throw new Error(
-#       "The second argument to the `wrap` function must be undefined, null, or an integer!"
-#     )
-#   }
+def wrap(raw, max_line_length=None):
+    assert (
+        type(raw) == str
+    ), "The first argument to the `wrap` function must be a string!"
 
-#   const out = []
+    if max_line_length is None:
+        max_line_length = min(80, os.get_terminal_size().columns)
 
-#   raw.split("\n").forEach(line => {
-#     if (line.trim().length === 0) {
-#       return out.push("")
-#     }
+    assert (
+        type(max_line_length) == int
+    ), "The second argument to the `wrap` function must be an integer or None!"
 
-#     const indentation = line.split(/[^\s]/g)[0]
+    out = []
+    lines = raw.split("\n")
+    whitespace = re.compile("\s")
 
-#     const words = line.replace(indentation, "").split(" ")
-#     let temp = indentation
+    for line in lines:
+        if len(line.strip()) == 0:
+            out.append("")
 
-#     words.forEach(word => {
-#       const newLine = temp + (temp.trim().length > 0 ? " " : "") + word
+        first_important_character_index = find_index(
+            lambda char: not whitespace.match(char), line.split("")
+        )
 
-#       if (newLine.length > maxLineLength) {
-#         out.push(temp)
-#         temp = indentation + word
-#       } else {
-#         temp = newLine
-#       }
-#     })
+        indentation = line[:first_important_character_index]
+        words = line.replace(indentation, "").split(" ")
+        temp = indentation
 
-#     if (temp.length > 0) {
-#       out.push(temp)
-#     }
-#   })
+        for word in words:
+            new_line = temp + (" " if len(temp.strip()) > 0 else "") + word
 
-#   return out.join("\n")
-# }
+            if len(new_line) > max_line_length:
+                out.append(temp)
+                temp = indentation + word
+
+            else:
+                temp = new_line
+
+        if len(temp) > 0:
+            out.append(temp)
+
+    return ("\n").join(out)
