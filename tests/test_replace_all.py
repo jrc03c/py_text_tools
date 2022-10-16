@@ -1,4 +1,4 @@
-from py_text_tools.helpers import replace_all
+from helpers import replace_all
 from unittest import TestCase
 
 
