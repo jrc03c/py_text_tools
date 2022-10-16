@@ -1,21 +1,26 @@
-# const camelify = require("./camelify.js")
+from py_text_tools import camelify
+from unittest import TestCase
 
-# test("tests `camelify`", () => {
-#   expect(camelify("foobarbaz")).toBe("foobarbaz")
 
-#   expect(camelify("Hello, world! My name is Josh!")).toBe(
-#     "helloWorldMyNameIsJosh"
-#   )
+class CamelifyTestCase(TestCase):
+    def test(self):
+        self.assertEqual(camelify("foobarbaz"), "foobarbaz")
 
-#   expect(camelify("'42 is the number thou shalt count!'")).toBe(
-#     "42IsTheNumberThouShaltCount"
-#   )
+        self.assertEqual(
+            camelify("Hello, world! My name is Josh!"), "helloWorldMyNameIsJosh"
+        )
 
-#   expect(camelify("I don't like you.")).toBe("iDontLikeYou")
+        self.assertEqual(
+            camelify("'42 is the number thou shalt count!'"),
+            "42IsTheNumberThouShaltCount",
+        )
 
-#   expect(camelify("howAboutNow")).toBe("howAboutNow")
+        self.assertEqual(camelify("I don't like you."), "iDontLikeYou")
 
-#   expect(camelify("heresAnotherOne_YesOrNo-orMaybeSo")).toBe(
-#     "heresAnotherOneYesOrNoOrMaybeSo"
-#   )
-# })
+        self.assertEqual(camelify("howAboutNow"), "howAboutNow")
+
+        self.assertEqual(
+            camelify("heresAnotherOne_YesOrNo-orMaybeSo"),
+            "heresAnotherOneYesOrNoOrMaybeSo",
+        )
+
