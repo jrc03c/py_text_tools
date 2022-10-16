@@ -1,5 +1,3 @@
-from .replace_all import replace_all
-
 alpha = "abcdefghijklmnopqrstuvwxyz1234567890"
 double_space = "  "
 single_space = " "
@@ -26,3 +24,18 @@ def strip(text):
         out = replace_all(out, double_space, single_space)
 
     return out.strip()
+
+
+def find_index(fn, x):
+    for i in range(0, len(x)):
+        if fn(x[i]):
+            return i
+
+    return None
+
+
+def replace_all(text, a, b):
+    assert type(text) == str, "`text` must be a string!"
+    assert type(a) == str, "`a` must be a string!"
+    assert type(b) == str, "`b` must be a string!"
+    return b.join(text.split(a))

@@ -1,4 +1,4 @@
-from helpers.strip import strip
+from .utils import strip
 
 
 def snakeify(text):

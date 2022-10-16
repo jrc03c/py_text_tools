@@ -1,4 +1,4 @@
-from helpers import strip
+from py_text_tools.utils import strip
 from unittest import TestCase
 
 
