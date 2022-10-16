@@ -1,30 +1,28 @@
-# const replaceAll = require("./replace-all.js")
-# const alpha = "abcdefghijklmnopqrstuvwxyz1234567890"
-# const doubleSpace = "  "
-# const singleSpace = " "
+from .replace_all import replace_all
 
-# function strip(text) {
-#   if (typeof text !== "string") {
-#     throw new Error("`text` must be a string!")
-#   }
+alpha = "abcdefghijklmnopqrstuvwxyz1234567890"
+double_space = "  "
+single_space = " "
 
-#   let out = ""
 
-#   for (let i = 0; i < text.length; i++) {
-#     const char = text[i].toLowerCase()
+def strip(text):
+    assert type(text) == str, "The `text` argument must be a string!"
 
-#     if (alpha.includes(char)) {
-#       out += char
-#     } else if (char === "'" || char === "’" || char === "❜") {
-#       out += ""
-#     } else {
-#       out += singleSpace
-#     }
-#   }
+    out = ""
 
-#   while (out.includes(doubleSpace)) {
-#     out = replaceAll(out, doubleSpace, singleSpace)
-#   }
+    for char in text.split(""):
+        char = char.lower()
 
-#   return out.trim()
-# }
+        if char in alpha:
+            out += char
+
+        elif char == "'" or char == "’" or char == "❜":
+            out += ""
+
+        else:
+            out += single_space
+
+    while double_space in out:
+        out = replace_all(out, double_space, single_space)
+
+    return out.strip()

@@ -1,15 +1,6 @@
-# function replaceAll(text, a, b) {
-#   if (typeof text !== "string") {
-#     throw new Error("`text` must be a string!")
-#   }
+def replace_all(text, a, b):
+    assert type(text) == str, "The `text` argument must be a string!"
+    assert type(a) == str, "The `a` argument must be a string!"
+    assert type(b) == str, "The `b` argument must be a string!"
+    return b.join(text.split(a))
 
-#   if (typeof a !== "string") {
-#     throw new Error("`a` must be a string!")
-#   }
-
-#   if (typeof b !== "string") {
-#     throw new Error("`b` must be a string!")
-#   }
-
-#   return text.split(a).join(b)
-# }
