@@ -16,6 +16,9 @@ class KebabifyTestCase(TestCase):
         )
 
         self.assertEqual(kebabify("I don't like you."), "i-dont-like-you")
-
         self.assertEqual(kebabify("how-about-now"), "how-about-now")
 
+        self.assertEqual(
+            kebabify("heresAnotherOne_YesOrNo-orMaybeSo"),
+            "heresanotherone-yesorno-ormaybeso",
+        )

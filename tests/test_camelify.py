@@ -16,7 +16,6 @@ class CamelifyTestCase(TestCase):
         )
 
         self.assertEqual(camelify("I don't like you."), "iDontLikeYou")
-
         self.assertEqual(camelify("howAboutNow"), "howAboutNow")
 
         self.assertEqual(
