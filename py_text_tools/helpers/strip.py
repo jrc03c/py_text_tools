@@ -6,7 +6,7 @@ single_space = " "
 
 
 def strip(text):
-    assert type(text) == str, "The `text` argument must be a string!"
+    assert type(text) == str, "`text` must be a string!"
 
     out = ""
 
