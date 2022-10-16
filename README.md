@@ -1,3 +1,11 @@
+<hr>
+
+# 🚧 UNDER CONSTRUCTION! 🚧
+
+I'm currently in the process of porting this library over to Python from [JS](https://github.com/jrc03c/js-text-tools). It's not ready to be used yet!
+
+<hr>
+
 # Introduction
 
 **js-text-tools** is just a little collection of tools for modifying text. It can be used either in the command line or in JS projects.
