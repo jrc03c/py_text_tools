@@ -1,4 +1,4 @@
-from .helpers.strip import strip
+from .helpers import strip
 
 
 def kebabify(x):

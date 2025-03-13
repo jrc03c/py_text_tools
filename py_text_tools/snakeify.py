@@ -1,4 +1,4 @@
-from .helpers.replace_all import replace_all
+from .helpers import replace_all
 from .kebabify import kebabify
 
 

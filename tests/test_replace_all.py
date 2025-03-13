@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from py_text_tools.utils import replace_all
+from py_text_tools.helpers import replace_all
 
 
 class ReplaceAllTestCase(TestCase):

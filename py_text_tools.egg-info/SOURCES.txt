@@ -2,6 +2,7 @@ README.md
 setup.py
 py_text_tools/__init__.py
 py_text_tools/camelify.py
+py_text_tools/helpers.py
 py_text_tools/indent.py
 py_text_tools/kebabify.py
 py_text_tools/pascalify.py

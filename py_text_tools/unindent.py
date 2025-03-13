@@ -1,7 +1,6 @@
 import re
 
-from .helpers.find_index import find_index
-from .helpers.string_to_array import string_to_array
+from .helpers import find_index, string_to_array
 
 whitespace = re.compile("\\s")
 
