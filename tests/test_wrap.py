@@ -1,6 +1,8 @@
-from numpy.random import random
-from py_text_tools import wrap
 from unittest import TestCase
+
+from numpy.random import random
+
+from py_text_tools import wrap
 
 
 def make_key(n):

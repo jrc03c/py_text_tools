@@ -1,5 +1,6 @@
-from py_text_tools import kebabify
 from unittest import TestCase
+
+from py_text_tools import kebabify
 
 
 class KebabifyTestCase(TestCase):

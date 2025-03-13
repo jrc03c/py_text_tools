@@ -1,13 +1,9 @@
 Metadata-Version: 2.1
-Name: py-text-tools
-Version: 0.0.5
+Name: py_text_tools
+Version: 0.0.6
 Summary: some text tools for python
 Home-page: https://github.com/jrc03c/py_text_tools
 Author: jrc03c
 Author-email: jrc03c@pm.me
 License: none
-Platform: UNKNOWN
 Classifier: Topic :: Text Processing
-
-UNKNOWN
-

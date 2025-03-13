@@ -1,45 +1,53 @@
-from .utils import find_index
-import os
 import re
 
+whitespace = re.compile("\\s")
 
-def wrap(raw, max_line_length=None):
-    assert (
-        type(raw) == str
-    ), "The first argument to the `wrap` function must be a string!"
 
-    if max_line_length is None:
-        max_line_length = min(80, os.get_terminal_size().columns)
+def get_line_start_whitespace(line):
+    for i in range(0, len(line)):
+        if not whitespace.match(line[i]):
+            return line[:i]
 
-    assert (
-        type(max_line_length) == int
-    ), "The second argument to the `wrap` function must be an integer or None!"
+    return ""
+
+
+def wrap(x, max_line_length=80, wrapped_line_prefix=""):
+    assert type(x) is str, (
+        "The first value passed into the `wrap` function must be a string!"
+    )
+
+    assert type(max_line_length) is int and max_line_length > 0, (
+        "The `max_line_length` value passed into the `wrap` function must be a positive integer!"
+    )
+
+    assert type(wrapped_line_prefix) is str, (
+        "The `wrapped_line_prefix` value passed into the `wrap` function must be a string!"
+    )
 
     out = []
-    lines = raw.split("\n")
-    whitespace = re.compile("\s")
+    lines = x.split("\n")
 
     for line in lines:
         if len(line.strip()) == 0:
             out.append("")
+            continue
 
-        first_important_character_index = find_index(
-            lambda char: not whitespace.match(char), list(line)
-        )
-
-        indentation = line[:first_important_character_index]
+        indentation = get_line_start_whitespace(line)
         words = line.replace(indentation, "").split(" ")
-        temp = indentation
+        temp = (wrapped_line_prefix if len(out) > 0 else "") + indentation
 
         for word in words:
-            new_line = temp + (" " if len(temp.strip()) > 0 else "") + word
+            new_temp = temp + (" " if len(temp.strip()) > 0 else "") + word
 
-            if len(new_line) > max_line_length:
+            if len(new_temp) > max_line_length:
                 out.append(temp)
-                temp = indentation + word
+
+                temp = (
+                    (wrapped_line_prefix if len(out) > 0 else "") + indentation + word
+                )
 
             else:
-                temp = new_line
+                temp = new_temp
 
         if len(temp) > 0:
             out.append(temp)

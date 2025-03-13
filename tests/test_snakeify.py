@@ -1,5 +1,6 @@
-from py_text_tools import snakeify
 from unittest import TestCase
+
+from py_text_tools import snakeify
 
 
 class SnakeifyTestCase(TestCase):

@@ -1,5 +1,6 @@
-from py_text_tools import unindent
 from unittest import TestCase
+
+from py_text_tools import unindent
 
 
 class UnindentTestCase(TestCase):
@@ -10,7 +11,11 @@ class UnindentTestCase(TestCase):
         self.assertEqual(b_true, b_pred)
 
         c = ("\n").join(
-            ["    Hello, world!", "        My name is Josh.", "  What's your name?",]
+            [
+                "    Hello, world!",
+                "        My name is Josh.",
+                "  What's your name?",
+            ]
         )
 
         d_true = ("\n").join(list(map(lambda line: line[2:], c.split("\n"))))

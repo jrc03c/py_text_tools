@@ -1,5 +1,6 @@
-from py_text_tools import indent
 from unittest import TestCase
+
+from py_text_tools import indent
 
 
 class IndentTestCase(TestCase):

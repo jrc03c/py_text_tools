@@ -1,5 +1,6 @@
-from py_text_tools import camelify
 from unittest import TestCase
+
+from py_text_tools import camelify
 
 
 class CamelifyTestCase(TestCase):
@@ -22,4 +23,3 @@ class CamelifyTestCase(TestCase):
             camelify("heresAnotherOne_YesOrNo-orMaybeSo"),
             "heresAnotherOneYesOrNoOrMaybeSo",
         )
-

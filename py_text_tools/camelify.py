@@ -1,16 +1,21 @@
 import re
 
+alphanumeric = re.compile("[A-Za-z0-9]")
 
-def camelify(text):
-    assert type(text) == str, "`text` must be a string!"
 
-    alphanumerics = re.compile("[A-Za-z0-9]")
-    text = text.strip()
+def camelify(x):
+    assert type(x) is str, (
+        "The value passed into the `camelify` function must be a string!"
+    )
+
+    x = x.trim()
     out = ""
     should_capitalize_next_character = False
 
-    for char in list(text):
-        if alphanumerics.match(char):
+    for i in range(0, len(x)):
+        char = x[i]
+
+        if alphanumeric.match(char):
             if len(out) == 0:
                 out += char.lower()
 
@@ -24,5 +29,7 @@ def camelify(text):
 
         elif "'" not in char and "’" not in char and "❜" not in char:
             should_capitalize_next_character = True
+
+        should_capitalize_next_character = False
 
     return out

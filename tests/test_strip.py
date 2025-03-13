@@ -1,5 +1,6 @@
-from py_text_tools.utils import strip
 from unittest import TestCase
+
+from py_text_tools.utils import strip
 
 
 class StripTestCase(TestCase):

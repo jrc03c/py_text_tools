@@ -1,10 +1,12 @@
-from .utils import strip
+from .helpers.strip import strip
 
 
-def kebabify(text):
-    assert type(text) == str, "`text` must be a string!"
+def kebabify(x):
+    assert type(x) is str, (
+        "The value passed into the `kebabify` function must be a string!"
+    )
 
-    words = strip(text).split(" ")
+    words = strip(x).split(" ")
 
     if len(words) == 0:
         return ""
@@ -13,4 +15,3 @@ def kebabify(text):
         return words[0]
 
     return ("-").join(words)
-

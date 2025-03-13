@@ -1,21 +1,23 @@
-from .utils import find_index
 import re
 
+from .helpers.find_index import find_index
+from .helpers.string_to_array import string_to_array
 
-def unindent(text):
-    assert type(text) == str, "`text` must be a string!"
+whitespace = re.compile("\\s")
 
-    whitespace = re.compile("\s")
-    lines = text.split("\n")
 
-    indentations = list(
-        map(
-            lambda line: find_index(
-                lambda char: not whitespace.match(char), list(line)
-            ),
-            list(filter(lambda line: len(line.strip()) > 0, lines)),
-        )
+def unindent(x):
+    assert type(x) is str, (
+        "The value passed into the `unindent` function must be a string!"
     )
 
+    lines = x.split("\n")
+    non_empty_lines = [line for line in lines if len(line.strip()) > 0]
+
+    indentations = [
+        find_index(lambda char: not whitespace.match(char), string_to_array(line))
+        for line in non_empty_lines
+    ]
+
     min_indentation = min(indentations)
-    return ("\n").join(list(map(lambda line: line[min_indentation:], lines)))
+    return ("\n").join([line[min_indentation:] for line in lines])

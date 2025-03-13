@@ -1,10 +1,4 @@
-def indent(text, chars=""):
+def indent(x, chars=""):
     return ("\n").join(
-        list(
-            map(
-                lambda line: chars + line if len(line.strip()) > 0 else line,
-                text.split("\n"),
-            )
-        )
+        [chars + line if len(line.strip()) > 0 else line for line in x.split("\n")]
     )
-

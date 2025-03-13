@@ -1,16 +1,11 @@
-from .utils import strip
+from .helpers.replace_all import replace_all
+from .kebabify import kebabify
 
 
-def snakeify(text):
-    assert type(text) == str, "`text` must be a string!"
+def snakeify(x):
+    assert type(x) is str, (
+        "The value passed into the `snakeify` function must be a string!"
+    )
 
-    words = strip(text).split(" ")
-
-    if len(words) == 0:
-        return ""
-
-    if len(words) == 1:
-        return words[0]
-
-    return ("_").join(words)
-
+    out = kebabify(x)
+    return replace_all(out, "-", "_")
